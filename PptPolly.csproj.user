@@ -4,4 +4,9 @@
     <StartAction>Project</StartAction>
     <StartProgram>C:\Dev\PptPolly\PptPolly.pptx</StartProgram>
   </PropertyGroup>
+  <PropertyGroup>
+    <PublishUrlHistory>publish\</PublishUrlHistory>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+  </PropertyGroup>
 </Project>

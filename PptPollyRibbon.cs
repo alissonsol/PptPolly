@@ -6,7 +6,6 @@
 
 using Microsoft.Office.Tools.Ribbon;
 using System;
-using System.Globalization;
 using Office = Microsoft.Office.Core;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 

@@ -5,8 +5,8 @@
 //----------------------------------------------------------------------
 
 using System;
-using System.Resources;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PPT Polly")]
-[assembly: AssemblyCopyright("Copyright © 2018 Alisson Sol")]
+[assembly: AssemblyCopyright("Copyright © 2018-2020 Alisson Sol")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
