@@ -11,11 +11,36 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
 
-namespace PptPolly
+namespace PptTextToSpeechAzure
 {
+    public static class AsyncHelper
+    {
+        private static readonly TaskFactory _taskFactory = new
+            TaskFactory(CancellationToken.None,
+                        TaskCreationOptions.None,
+                        TaskContinuationOptions.None,
+                        TaskScheduler.Default);
+
+        public static TResult RunSync<TResult>(Func<Task<TResult>> func)
+            => _taskFactory
+                .StartNew(func)
+                .Unwrap()
+                .GetAwaiter()
+                .GetResult();
+
+        public static void RunSync(Func<Task> func)
+            => _taskFactory
+                .StartNew(func)
+                .Unwrap()
+                .GetAwaiter()
+                .GetResult();
+    }
+
     internal class SpeechSynthesizerHelper
     {
         /// <summary>
@@ -27,27 +52,32 @@ namespace PptPolly
 
         static public string GeneratedFilename;
 
-        static public async Task SynthesisToSpeakerAsync()
+        /// <summary>
+        /// Returns temporary file with MP3 for input text, synthetized in call to web s
+        /// </summary>
+        /// <param name="text">Text to become speech.</param>
+        /// <param name="voice">Voice. Default is Joanna in English, US.</param>
+        /// <returns></returns>
+        static public string GetSpeech(string text, string voice = "")
         {
             // Creates an instance of a speech config with specified subscription key and service region.
             // Replace with your own subscription key and service region (e.g., "westus").
-            var config = SpeechConfig.FromSubscription("YourSubscriptionKey", "westus");
+            var config = SpeechConfig.FromSubscription("YourSubscriptionKey", "westus2");
 
             // Creates a speech synthesizer using the default speaker as audio output.
             using (var synthesizer = new SpeechSynthesizer(config))
             {
-                // Receive a text from console input and synthesize it to speaker.
-                Console.WriteLine("Type some text that you want to speak...");
-                Console.Write("> ");
-                string text = Console.ReadLine();
-
-                using (var result = await synthesizer.SpeakTextAsync(text))
+                var result = AsyncHelper.RunSync(async () =>
+                {
+                    return await synthesizer.SpeakTextAsync(text);
+                });
+                using (result)
                 {
                     if (result.Reason == ResultReason.SynthesizingAudioCompleted)
                     {
                         Console.WriteLine($"Speech synthesized to speaker for text [{text}]");
 
-                        GeneratedFilename = Path.Combine(Path.GetTempPath(), DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture) + "_" + Guid.NewGuid().ToString() + ".mp3");
+                        GeneratedFilename = Path.Combine(Path.GetTempPath(), DateTime.Now.Ticks.ToString(CultureInfo.InvariantCulture) + "_" + Guid.NewGuid().ToString() + ".m4a");
                         using (var fileStream = File.Create(GeneratedFilename))
                         {
                             fileStream.Write(result.AudioData, 0, result.AudioData.Length);
@@ -68,6 +98,8 @@ namespace PptPolly
                     }
                 }
             }
+
+            return GeneratedFilename;
         }
     }
 }

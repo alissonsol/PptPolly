@@ -1,4 +1,12 @@
-﻿using System.Reflection;
+﻿//----------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Alisson Sol">
+//   Code provided "as is", with full rights for any use or change.
+// </copyright>
+//----------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -11,7 +19,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PptTextToSpeechAzure")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright © 2022 Alisson Sol")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -35,4 +43,5 @@ using System.Security;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en-US")]
 

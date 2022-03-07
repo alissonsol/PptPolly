@@ -170,6 +170,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TextToSpeechAzureRibbon.resx">
+      <DependentUpon>TextToSpeechAzureRibbon.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="PptTextToSpeechAzure_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
@@ -181,6 +184,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SpeechSynthesizerHelper.cs" />
+    <Compile Include="TextToSpeechAzureRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextToSpeechAzureRibbon.Designer.cs">
+      <DependentUpon>TextToSpeechAzureRibbon.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
