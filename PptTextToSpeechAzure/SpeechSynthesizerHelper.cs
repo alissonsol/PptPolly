@@ -62,7 +62,8 @@ namespace PptTextToSpeechAzure
         {
             // Creates an instance of a speech config with specified subscription key and service region.
             // Replace with your own subscription key and service region (e.g., "westus").
-            var config = SpeechConfig.FromSubscription("YourSubscriptionKey", "westus2");
+            // var config = SpeechConfig.FromSubscription("YourSubscriptionKey", "westus2");
+            var config = SpeechConfig.FromSubscription("c01d27b06a3d4155b335e136717ca4e7", "eastus");
 
             // Creates a speech synthesizer using the default speaker as audio output.
             using (var synthesizer = new SpeechSynthesizer(config))
