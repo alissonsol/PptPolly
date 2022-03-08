@@ -13,4 +13,4 @@ There are now two versions.
 - The code under the [AmazonPolly](./AmazonPolly/) folder will make the text to speech conversion using [Amazon Polly](https://aws.amazon.com/polly/)
 - The code under the [PptTextToSpeechAzure](./PptTextToSpeechAzure/) folder will make the text to speech conversion using [Azure Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/#features)
 
-Both projects require the Visual Studio Community version and other downloads.
+Both projects require the Visual Studio Community version and other downloads. Latest tests performed with Visual Studio 2022.
